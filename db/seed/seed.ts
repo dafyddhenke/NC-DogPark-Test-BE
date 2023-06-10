@@ -23,7 +23,7 @@ function deleteCollections() {
 function deleteAllUsers() {
   return auth.listUsers().then((listUsersResult) => {
     const userDeletionPromises = listUsersResult.users.map((userRecord) => {
-      auth.deleteUser(userRecord.uid);
+      return auth.deleteUser(userRecord.uid);
     });
     return Promise.all(userDeletionPromises);
   });
@@ -40,13 +40,20 @@ function createParks() {
 }
 
 function createUsers() {
-  const userCreationPromises = usersData.map((user) =>
-    auth.createUser(user).then((createdUser) => {
-      db.collection("users")
-        .doc(createdUser.uid)
-        .set({ email: createdUser.email });
-    })
-  );
+  const userCreationPromises = usersData.map((user, index) => {
+    const uid = `user_${index + 1}`;
+    return auth
+      .createUser({
+        ...user,
+        uid: uid,
+      })
+      .then((createdUser) => {
+        return db
+          .collection("users")
+          .doc(createdUser.uid)
+          .set({ email: createdUser.email });
+      });
+  });
   return Promise.all(userCreationPromises);
 }
 
