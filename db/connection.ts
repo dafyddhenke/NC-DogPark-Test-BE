@@ -1,7 +1,5 @@
+import 'dotenv/config';
 import admin, { ServiceAccount } from 'firebase-admin';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const env = process.env.NODE_ENV || "emulator";
 

@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "ts-node listen.js",
+    "start": "node listen.js",
     "test": "jest --config=jest.config.ts --detectOpenHandles --forceExit"
   }
 }
