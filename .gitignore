@@ -1,3 +1,4 @@
 node_modules
 .DS_Store
-nc-parks-firebase-adminsdk*
+serviceAccount.json
+dist/
