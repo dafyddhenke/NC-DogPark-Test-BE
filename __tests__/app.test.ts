@@ -23,10 +23,7 @@ describe("GET /api/parks", () => {
       .expect(200)
       .then((response) => {
         const parksArray = response.body;
-        const firstPark = parksArray[0];
-        console.log(firstPark);
-        // const fistCategoryKeys = Object.keys(firstCategory);
-        // expect(categoryArray.length === 2).toBe(true);
+        expect(parksArray.length === 2).toBe(true);
       });
   });
 });

@@ -60,15 +60,12 @@ function createUsers() {
 export function seedDatabase() {
   return deleteCollections()
     .then(() => {
-      console.log("deleted collections");
       return deleteAllUsers();
     })
     .then(() => {
-      console.log("deleted users");
       return createParks();
     })
     .then(() => {
-      console.log("created parks");
       return createUsers();
     })
     .then(() => console.log("Seed successful"))
